@@ -32,5 +32,18 @@ export class UserService {
     getAllUsers = () => {
         return this.db
     }
+
+    deleteUser = (userId: string): void => {
+        const index = this.db.findIndex(user => user.email === userId);
+    
+        if (index !== -1) {
+            this.db.splice(index, 1);
+            console.log('Usuário deletado:', userId);
+            console.log('DB atualizado:', this.db);
+        } else {
+            throw new Error('Usuário não encontrado');
+        }
+    }
+    
 }
 
